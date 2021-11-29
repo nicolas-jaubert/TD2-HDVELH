@@ -26,13 +26,10 @@ public class Scenario {
 	
 	public String run()
 	{
-		Event next_event = this.head.run();
-		boolean is_final = false;
-		while (!is_final)
-		{
-			is_final = !next_event.hasDaughters();
+		Event next_event = head;
+		while (next_event.hasDaughters())
 			next_event = next_event.run();
-		}
+		gui.output(next_event.toString());
 	
 		return "Fin de l'éxécution";
 	}
