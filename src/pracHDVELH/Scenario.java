@@ -12,16 +12,37 @@ package pracHDVELH;
 public class Scenario {
 	private static final String MSG_EMPTY_SCENARIO = "Sorry, no scenario was found.";
 	private static final String MSG_FINALE = "That's all folks!";
-	private Event head;
 	private GUIManager gui;
+	private Event head;
 
 	/* TO BE COMPLETED */
+	
+
+	
+	public Scenario(Event beginEvent)
+	{
+		this.head = beginEvent;
+	}
+	
+	public String run()
+	{
+		Event next_event = this.head.run();
+		boolean is_final = false;
+		while (!is_final)
+		{
+			is_final = !next_event.hasDaughters();
+			next_event = next_event.run();
+		}
+	
+		return "Fin de l'éxécution";
+	}
+	
 
 	/* MAIN */
 	public static void main(String[] args) {
 		Scenario scenario;
 		GUIManager gui = new GUIManager(System.in, System.out, System.err);
-
+				
 		// S
 		// *1:event1
 		// **1.1
@@ -35,7 +56,7 @@ public class Scenario {
 		// ***S
 
 		Event startEvent = new Event(gui, "Go!\n" + "(1)1 (2)2");
-		Event event1 = new Event(gui, "event1:\n" + "(1)1.1 (2)1.2");
+		Event event1 = new Event(gui, "event:\n" + "(1)1.1 (2)1.2");
 		Event event2 = new Event(gui, "event2:\n" + "(1)2.1 (2)2.2");
 		Event endEvent = new Event(gui, "End event: that's it :-)");
 		startEvent.addDaughter(event1);
@@ -44,8 +65,9 @@ public class Scenario {
 		event1.addDaughter(endEvent);
 		event2.addDaughter(event1);
 		event2.addDaughter(startEvent);
-		scenario = new Scenario(gui, startEvent);
-
+		scenario = new Scenario(startEvent);
+	
+		/*
 		// *2
 		// ...
 		// **2.3:event3
@@ -58,7 +80,7 @@ public class Scenario {
 		event3.addDaughter(endEvent);
 		event3.addDaughter(event3);
 
-		/* ******* */
+		
 		// **2.3
 		// ***event4
 		// ****event2
@@ -73,6 +95,7 @@ public class Scenario {
 		event4.addDaughter(event2);
 		event4.addDaughter(endEvent);
 		event4.addDaughter(event3);
+		*/
 
 		System.out.println(scenario.run());
 	}
