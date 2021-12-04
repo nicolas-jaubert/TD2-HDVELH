@@ -6,6 +6,7 @@ public class EventRandomSolution extends Event {
 	private static final int ERROR_STATUS_BAD_SETTINGS = -1;
 	private static final int DEFAULT_RANDOM_SOLUTION = 0;
 	private static final String ERROR_MSG_BAD_SETTINGS = "The settings haven't been set properly";
+	public static int MAX_PARTITION = 10;
 	private int dice;
 	private int randomSolution;
 	private Random randomGenerator;
@@ -15,7 +16,7 @@ public class EventRandomSolution extends Event {
 	
 	public EventRandomSolution()
 	{
-		this(new GUIManager(), null, new int[3], null, null);
+		this(new GUIManager(), null, new int[MAX_PARTITION], null, null);
 	}
 	
 	public EventRandomSolution(GUIManager gui, String data, int[] partition, String waitingMsg, String solutionAnnoucement)
@@ -24,16 +25,29 @@ public class EventRandomSolution extends Event {
 		this.partition = partition;
 		this.waitingMsg = waitingMsg;
 		this.solutionAnnoucement = solutionAnnoucement;
+		randomGenerator = new Random();
 	}
 	
-	public void run()
+	public Event run()
 	{
-		
+		getGui().outputln(getData());
+		randomSolution = randomGenerator.nextInt(partition[partition.length - 1]) + 1;
+		getGui().outputln(waitingMsg + randomSolution);
+		getGui().outputln(solutionAnnoucement);
+		return getDaughter(interpretAnswer());
 	}
 	
 	public int interpretAnswer()
 	{
-		
+		int value = 0;
+		int i = 1;
+		while(i < randomSolution)
+		{
+			++i;
+			if (i > partition[value])
+				++value;
+		}
+		return value;
 	}
 
 	public int getDice() {return dice;}

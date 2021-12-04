@@ -89,8 +89,8 @@ public class Scenario {
 		Event event4 = new EventRandomSolution(gui, "Random choice of the next event...", mask, "Dice rolling... Roll=",
 				"\nNext event is ");
 		event3.setDaughter(event4, 0);
-		event4.addDaughter(event2);
 		event4.addDaughter(endEvent);
+		event4.addDaughter(event2);
 		event4.addDaughter(event3);
 		
 
