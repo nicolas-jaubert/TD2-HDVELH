@@ -64,7 +64,7 @@ public class Scenario {
 		event2.addDaughter(startEvent);
 		scenario = new Scenario(startEvent);
 	
-		/*
+		
 		// *2
 		// ...
 		// **2.3:event3
@@ -77,7 +77,7 @@ public class Scenario {
 		event3.addDaughter(endEvent);
 		event3.addDaughter(event3);
 
-		
+		/*
 		// **2.3
 		// ***event4
 		// ****event2
