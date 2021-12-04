@@ -56,7 +56,7 @@ public class Event extends NodeMultiple {
 		int i = -1;
 		while (i == -1)
 		{
-			gui.outputln("Ecrivez votre choix :");
+			gui.outputln(PROMPT_ANSWER);
 			setPlayerAnswer(reader.next());
 			try 
 			{
@@ -69,7 +69,7 @@ public class Event extends NodeMultiple {
 			}
 			if ( i != -1 && (i < 1 || i > super.numberDaughters()))
 			{
-				gui.outputln("Aucun évènement correspond à votre valeur");
+				gui.outputln(WARNING_MSG_INTEGER_EXPECTED);
 				i = -1;
 			}
 		}

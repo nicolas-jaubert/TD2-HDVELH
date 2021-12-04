@@ -77,7 +77,7 @@ public class Scenario {
 		event3.addDaughter(endEvent);
 		event3.addDaughter(event3);
 
-		/*
+		
 		// **2.3
 		// ***event4
 		// ****event2
@@ -92,9 +92,9 @@ public class Scenario {
 		event4.addDaughter(event2);
 		event4.addDaughter(endEvent);
 		event4.addDaughter(event3);
-		*/
+		
 
-		System.out.println(scenario.run());
+		gui.outputln(scenario.run());
 	}
 }
 
