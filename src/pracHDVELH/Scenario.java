@@ -29,7 +29,7 @@ public class Scenario {
 		Event next_event = head;
 		while (next_event.hasDaughters())
 			next_event = next_event.run();
-		gui.output(next_event.toString());
+		System.out.println(next_event.toString());
 	
 		return "Fin de l'éxécution";
 	}
@@ -71,7 +71,7 @@ public class Scenario {
 		// ***E
 		// ***event3
 
-		Event event3 = new EventExactSolution(gui, "Wizard: how much is worth pi?", "3.14159");
+		Event event3 = new EventExactSolution(gui, "Wizard: how much is worth pi? (the first 6 values)", "3.14159");
 		event2.setData(event2.getData() + " (3)2.3");
 		event2.addDaughter(event3);
 		event3.addDaughter(endEvent);

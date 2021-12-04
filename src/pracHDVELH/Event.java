@@ -18,7 +18,7 @@ public class Event extends NodeMultiple {
 	public static final String PROMPT_ANSWER = "Answer: ";
 	public static final String WARNING_MSG_INTEGER_EXPECTED = "Please input a integer within range!";
 	private static int lastId = 0;
-	private int playerAnswer;
+	private String playerAnswer;
 	private Scanner reader;
 	private GUIManager gui;
 	private int id;
@@ -47,28 +47,46 @@ public class Event extends NodeMultiple {
 	public Event run()
 	{
 		gui.outputln(super.getData().toString());
-		gui.outputln("Ecrivez votre choix :");
-		setPlayerAnswer(reader.nextInt());
 		return getDaughter(interpretAnswer());
 		
 	}
 	
 	public int interpretAnswer()
 	{
-		return playerAnswer - 1;
+		int i = -1;
+		while (i == -1)
+		{
+			gui.outputln("Ecrivez votre choix :");
+			setPlayerAnswer(reader.next());
+			try 
+			{
+				 i = Integer.parseInt(playerAnswer);
+			}
+			catch(Exception e)
+			{
+				gui.outputln("Ecrivez l'une des valeurs attendues (la valeur entre parenthèse)");
+				i = -1;
+			}
+			if ( i != -1 && (i < 1 || i > super.numberDaughters()))
+			{
+				gui.outputln("Aucun évènement correspond à votre valeur");
+				i = -1;
+			}
+		}
+		return  i - 1;
 	}
 	
 	/**
 	 * @return the playerAnswer
 	 */
-	public int getPlayerAnswer() {
+	public String getPlayerAnswer() {
 		return playerAnswer;
 	}
 
 	/**
 	 * @param playerAnswer the playerAnswer to set
 	 */
-	public void setPlayerAnswer(int playerAnswer) {
+	public void setPlayerAnswer(String playerAnswer) {
 		this.playerAnswer = playerAnswer;
 	}
 
@@ -76,14 +94,14 @@ public class Event extends NodeMultiple {
 	 * @return the reader
 	 */
 	public Scanner getReader() {
-		/* TO BE COMPLETED */
+		return reader;
 	}
 
 	/**
 	 * @param reader the reader to set
 	 */
 	public void setReader(Scanner reader) {
-		/* TO BE COMPLETED */
+		this.reader = reader;
 	}
 
 	/**

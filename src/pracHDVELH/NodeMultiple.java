@@ -94,7 +94,7 @@ public class NodeMultiple {
 		
 		daughters[i] = daughter;
 	}
-
+	
 	/**
 	 * @return the content data
 	 */
@@ -118,6 +118,14 @@ public class NodeMultiple {
 		while (i < NODE_MAX_ARITY && daughters[i] == null)
 			i++;
 		return i < NODE_MAX_ARITY;
+	}
+	
+	public int numberDaughters() {
+		int count = 0;
+		for (int i = 0; i <= (NODE_MAX_ARITY - 1); ++i) 
+			if (daughters[i] != null) ++count;
+		
+		return count;
 	}
 
 	/* Constructors */
