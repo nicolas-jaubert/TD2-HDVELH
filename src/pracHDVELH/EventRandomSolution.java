@@ -36,4 +36,19 @@ public class EventRandomSolution extends Event {
 		
 	}
 
+	public int getDice() {return dice;}
+	public int getRandomSolution() {return randomSolution;}
+	public Random getRandomGenerator() {return randomGenerator;}
+	public int[] getPartition() {return partition;}
+	public String getWaitingMsg() {return waitingMsg;}
+	public String getSolutionAnnoucement() {return solutionAnnoucement;}
+	
+	public void setDice(int dice) {this.dice = dice;}
+	public void setRandomSolution(int randomSolution) {this.randomSolution = randomSolution;}
+	public void setRandomGenerator(Random randomGenerator) {this.randomGenerator = randomGenerator;}
+	public void setPartition(int[] partition) {this.partition = partition;}
+	public void setWaitingMsg(String waitingMsg) {this.waitingMsg = waitingMsg;}
+	public void setSolutionAnnoucement(String solutionAnnoucement) {this.solutionAnnoucement = solutionAnnoucement;}
+	
+	
 }
